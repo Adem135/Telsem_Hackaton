@@ -1,25 +1,22 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const countdown = () => {
-        const endDate = new Date("July 12, 2024 00:00:00").getTime();
-        const now = new Date().getTime();
-        const timeLeft = endDate - now;
+const countdown = () => {
+    const countDate = new Date("July 12, 2024 00:00:00").getTime();
+    const now = new Date().getTime();
+    const gap = countDate - now;
 
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
 
-        document.getElementById("days").innerText = days;
-        document.getElementById("hours").innerText = hours;
-        document.getElementById("minutes").innerText = minutes;
-        document.getElementById("seconds").innerText = seconds;
+    const textDay = Math.floor(gap / day);
+    const textHour = Math.floor((gap % day) / hour);
+    const textMinute = Math.floor((gap % hour) / minute);
+    const textSecond = Math.floor((gap % minute) / second);
 
-        if (timeLeft < 0) {
-            clearInterval(timerInterval);
-            document.getElementById("timer").innerHTML = "The hackathon has started!";
-        }
-    };
+    document.getElementById('days').innerText = textDay;
+    document.getElementById('hours').innerText = textHour;
+    document.getElementById('minutes').innerText = textMinute;
+    document.getElementById('seconds').innerText = textSecond;
+};
 
-    countdown();
-    const timerInterval = setInterval(countdown, 1000);
-});
+setInterval(countdown, 1000);
