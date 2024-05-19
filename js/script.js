@@ -1,24 +1,25 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const countdownElement = document.getElementById('countdown-timer');
-    const eventDate = new Date('July 12, 2024 00:00:00').getTime();
-
-    const updateCountdown = () => {
+document.addEventListener("DOMContentLoaded", function () {
+    const countdown = () => {
+        const endDate = new Date("July 12, 2024 00:00:00").getTime();
         const now = new Date().getTime();
-        const distance = eventDate - now;
+        const timeLeft = endDate - now;
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
 
-        if (distance < 0) {
-            clearInterval(interval);
-            countdownElement.innerHTML = 'Event has started!';
+        if (timeLeft < 0) {
+            clearInterval(timerInterval);
+            document.getElementById("timer").innerHTML = "The hackathon has started!";
         }
     };
 
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
+    countdown();
+    const timerInterval = setInterval(countdown, 1000);
 });
