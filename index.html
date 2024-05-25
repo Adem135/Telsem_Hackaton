@@ -4,123 +4,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telsem Hackathon 2024</title>
+    <title>Telsem Youth Organization Hackathon</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
     <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Telsem Youth Organization">
+        </div>
         <nav>
-            <div class="logo">Telsem Hackathon 2024</div>
             <ul>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#details">Event Details</a></li>
-                <li><a href="#register">Register</a></li>
+                <li><a href="#registration">Registration</a></li>
                 <li><a href="#prizes">Prizes</a></li>
                 <li><a href="#sponsors">Sponsors</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <div class="header-content">
-            <h1>Empowering Through Programming</h1>
-            <p>Join us for an exciting 48-hour hackathon aimed at high school students around the world.</p>
-            <a href="#register" class="btn">Register Now</a>
-        </div>
     </header>
 
-    <section id="countdown">
-        <h2>Countdown to Hackathon</h2>
-        <div id="timer">
-            <div><span id="days"></span> Days</div>
-            <div><span id="hours"></span> Hours</div>
-            <div><span id="minutes"></span> Minutes</div>
-            <div><span id="seconds"></span> Seconds</div>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="main-banner">
+            <h1>Telsem Youth Organization Hackathon</h1>
+            <p>July 12, 2024 - Duration: 48 Hours</p>
+            <button onclick="window.location.href='#registration'">Register Now</button>
+        </section>
 
-    <section id="about">
-        <h2>About the Hackathon</h2>
-        <p>The Telsem Hackathon 2024 is designed to connect high school students and empower them through programming.
-            Participants will have the opportunity to build innovative projects, collaborate with peers, and showcase
-            their talents. Whether you're an experienced coder or a beginner, this hackathon is for you!</p>
-        <img src="about.jpg" alt="About the Hackathon">
-    </section>
+        <section id="about" class="about-section">
+            <h2>About the Hackathon</h2>
+            <p>Welcome to the Telsem Youth Organization's first online hackathon! This event connects high school
+                students and empowers them through programming. The theme is "Empowering through Programming."</p>
+            <p>Participants can expect to build projects, collaborate with peers, and learn new skills. Whether you're a
+                beginner or an experienced programmer, we encourage you to join and make a difference!</p>
+            <img src="images/about-hackathon.jpg" alt="About the Hackathon">
+        </section>
 
-    <section id="details">
-        <h2>Event Details</h2>
-        <p><strong>Date:</strong> July 12, 2024</p>
-        <p><strong>Duration:</strong> 48 hours</p>
-        <p><strong>Theme:</strong> Empowering Through Programming</p>
-        <p>This event will be held online, allowing students from all over the world to participate. Teams will be
-            formed to encourage collaboration and learning.</p>
-        <img src="details.jpg" alt="Event Details">
-    </section>
+        <section id="details" class="event-details-section">
+            <h2>Event Details</h2>
+            <p>Date: July 12, 2024</p>
+            <p>Duration: 48 hours</p>
+            <p>Theme: Empowering Through Programming</p>
+            <p>This event is online, making it accessible worldwide. Participants will form teams to encourage
+                collaboration.</p>
+            <img src="images/event-details.jpg" alt="Event Details">
+        </section>
 
-    <section id="register">
-        <h2>Registration Information</h2>
-        <p>To register for the Telsem Hackathon 2024, please fill out the registration form by July 5, 2024. There is no
-            registration fee. We welcome students with all levels of programming experience.</p>
-        <a href="registration_form_link" class="btn">Register Here</a>
-    </section>
+        <section id="registration" class="registration-section">
+            <h2>Registration Information</h2>
+            <p>Instructions on how to register.</p>
+            <p>Deadline for registration: July 5, 2024.</p>
+            <p>No registration fee required. Students of all skill levels are welcome to participate.</p>
+            <button onclick="window.location.href='register.html'">Register Now</button>
+            <img src="images/registration.jpg" alt="Registration">
+        </section>
 
-    <section id="prizes">
-        <h2>Prizes and Awards</h2>
-        <p>Participants will have the chance to win various prizes and awards. The categories include:</p>
-        <ul>
-            <li>Best Overall Project</li>
-            <li>Most Innovative Idea</li>
-            <li>Best Design</li>
-            <li>Best Beginner Project</li>
-        </ul>
-        <p>All participants will receive a certificate of participation.</p>
-        <img src="prizes.jpg" alt="Prizes and Awards">
-    </section>
+        <section id="prizes" class="prizes-section">
+            <h2>Prizes and Awards</h2>
+            <p>Award Categories:</p>
+            <ul>
+                <li>Best Overall Project</li>
+                <li>Most Innovative Idea</li>
+                <li>Best Design</li>
+                <li>Best Beginner Project</li>
+            </ul>
+            <p>All participants will receive a certificate of participation.</p>
+            <img src="images/prizes.jpg" alt="Prizes">
+        </section>
 
-    <section id="sponsors">
-        <h2>Our Sponsors</h2>
-        <p>We would like to thank our sponsors for their generous support. Their contributions help make this event
-            possible.</p>
-        <div class="sponsor-logos">
-            <img src="sponsor1_logo.jpg" alt="Sponsor 1">
-            <img src="sponsor2_logo.jpg" alt="Sponsor 2">
-        </div>
-    </section>
+        <section id="sponsors" class="sponsors-section">
+            <h2>Our Sponsors</h2>
+            <p>We acknowledge our sponsors' support, which helps make this event possible.</p>
+            <div class="sponsor-logos">
+                <img src="images/sponsor1.png" alt="Sponsor 1">
+                <img src="images/sponsor2.png" alt="Sponsor 2">
+            </div>
+        </section>
 
-    <section id="faq">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <h3>Who can participate?</h3>
-            <p>High school students from around the world are welcome to participate.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Do I need to be an experienced programmer?</h3>
-            <p>No, we welcome students of all skill levels. Whether you're a beginner or an expert, you'll find this
-                hackathon valuable.</p>
-        </div>
-        <div class="faq-item">
-            <h3>How do I form a team?</h3>
-            <p>Teams can be formed during the registration process or at the beginning of the hackathon. You can choose
-                to work with friends or be matched with other participants.</p>
-        </div>
-        <div class="faq-item">
-            <h3>What are the judging criteria?</h3>
-            <p>Projects will be judged based on innovation, design, functionality, and presentation.</p>
-        </div>
-    </section>
+        <section id="faq" class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Who can participate?</h3>
+                <p>High school students from around the world are welcome to participate.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need to be an experienced programmer?</h3>
+                <p>No, we welcome students of all skill levels. Whether you're a beginner or an expert, you'll find this
+                    hackathon valuable.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do I form a team?</h3>
+                <p>Teams can be formed during the registration process or at the beginning of the hackathon. You can
+                    choose to work with friends or be matched with other participants.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What are the judging criteria?</h3>
+                <p>Projects will be judged based on innovation, design, functionality, and presentation.</p>
+            </div>
+            <img src="images/faq.jpg" alt="FAQ">
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" required></textarea><br>
+                <button type="submit">Send</button>
+            </form>
+            <p>Email: contact@telsem.org<br>
+                Follow us on social media: <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a><a
+                    href="#"><img src="images/twitter-icon.png" alt="Twitter"></a><a href="#"><img
+                        src="images/instagram-icon.png" alt="Instagram"></a></p>
+        </section>
+
+        <section id="countdown" class="countdown-section">
+            <h2>Countdown to Hackathon</h2>
+            <div id="countdown-timer"></div>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2024 Telsem Youth Organization. All rights reserved.</p>
     </footer>
-    <script src="js/script.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-    <script>
-        particlesJS.load('particles-js', 'path/to/particles.json', function () {
-            console.log('particles.js loaded - callback');
-        });
-    </script>
 
+    <script src="js/scripts.js"></script>
 </body>
 
 </html>

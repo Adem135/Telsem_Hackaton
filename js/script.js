@@ -1,22 +1,35 @@
-const countdown = () => {
-    const countDate = new Date("July 12, 2024 00:00:00").getTime();
-    const now = new Date().getTime();
-    const gap = countDate - now;
+document.addEventListener("DOMContentLoaded", function () {
+    // Countdown Timer
+    const countdownElement = document.getElementById("countdown-timer");
+    const eventDate = new Date("June 7, 2024 10:00:00").getTime();
 
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
 
-    const textDay = Math.floor(gap / day);
-    const textHour = Math.floor((gap % day) / hour);
-    const textMinute = Math.floor((gap % hour) / minute);
-    const textSecond = Math.floor((gap % minute) / second);
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById('days').innerText = textDay;
-    document.getElementById('hours').innerText = textHour;
-    document.getElementById('minutes').innerText = textMinute;
-    document.getElementById('seconds').innerText = textSecond;
-};
+        countdownElement.innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
 
-setInterval(countdown, 1000);
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            countdownElement.innerHTML = "Event Started!";
+        }
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});
