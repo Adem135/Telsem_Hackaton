@@ -1,118 +1,39 @@
-jQuery(document).ready(function($) {
-  "use strict";
 
-  //Contact
-  $('form.contactForm').submit(function() {
-    var f = $(this).find('.form-group'),
-      ferror = false,
-      emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
+const form = document.getElementById('form');
+const result = document.getElementById('result');
 
-    f.children('input').each(function() { // run all inputs
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  result.innerHTML = "Please wait..."
 
-      var i = $(this); // current input
-      var rule = i.attr('data-rule');
-
-      if (rule !== undefined) {
-        var ierror = false; // error flag for current input
-        var pos = rule.indexOf(':', 0);
-        if (pos >= 0) {
-          var exp = rule.substr(pos + 1, rule.length);
-          rule = rule.substr(0, pos);
-        } else {
-          rule = rule.substr(pos + 1, rule.length);
-        }
-
-        switch (rule) {
-          case 'required':
-            if (i.val() === '') {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'minlen':
-            if (i.val().length < parseInt(exp)) {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'email':
-            if (!emailExp.test(i.val())) {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'checked':
-            if (! i.is(':checked')) {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'regexp':
-            exp = new RegExp(exp);
-            if (!exp.test(i.val())) {
-              ferror = ierror = true;
-            }
-            break;
-        }
-        i.next('.validation').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: json
+  })
+    .then(async (response) => {
+      let json = await response.json();
+      if (response.status == 200) {
+        result.innerHTML = "Form submitted successfully";
+      } else {
+        console.log(response);
+        result.innerHTML = json.message;
       }
+    })
+    .catch(error => {
+      console.log(error);
+      result.innerHTML = "Something went wrong!";
+    })
+    .then(function () {
+      form.reset();
+      setTimeout(() => {
+        result.style.display = "none";
+      }, 3000);
     });
-    f.children('textarea').each(function() { // run all inputs
-
-      var i = $(this); // current input
-      var rule = i.attr('data-rule');
-
-      if (rule !== undefined) {
-        var ierror = false; // error flag for current input
-        var pos = rule.indexOf(':', 0);
-        if (pos >= 0) {
-          var exp = rule.substr(pos + 1, rule.length);
-          rule = rule.substr(0, pos);
-        } else {
-          rule = rule.substr(pos + 1, rule.length);
-        }
-
-        switch (rule) {
-          case 'required':
-            if (i.val() === '') {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'minlen':
-            if (i.val().length < parseInt(exp)) {
-              ferror = ierror = true;
-            }
-            break;
-        }
-        i.next('.validation').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
-      }
-    });
-    if (ferror) return false;
-    else var str = $(this).serialize();
-    var action = $(this).attr('action');
-    if( ! action ) {
-      action = 'contactform/contactform.php';
-    }
-    $.ajax({
-      type: "POST",
-      url: action,
-      data: str,
-      success: function(msg) {
-        // alert(msg);
-        if (msg == 'OK') {
-          $("#sendmessage").addClass("show");
-          $("#errormessage").removeClass("show");
-          $('.contactForm').find("input, textarea").val("");
-        } else {
-          $("#sendmessage").removeClass("show");
-          $("#errormessage").addClass("show");
-          $('#errormessage').html(msg);
-        }
-
-      }
-    });
-    return false;
-  });
-
 });

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telsem Hackathon 2024 - Registration Form</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="registration-container">
+        <h2>Registration Form</h2>
+        <form id="registration-form">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required>
+
+            <label for="fathername">Father's Name:</label>
+            <input type="text" id="fathername" name="fathername" required>
+
+            <label for="grandfathername">Grandfather's Name:</label>
+            <input type="text" id="grandfathername" name="grandfathername" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="discord">Discord Username:</label>
+            <input type="text" id="discord" name="discord" required>
+
+            <label for="grade">Grade Level:</label>
+            <input type="text" id="grade" name="grade" required>
+
+            <label for="school">School:</label>
+            <input type="text" id="school" name="school" required>
+
+            <label for="experience">Programming Experience:</label>
+            <input type="text" id="experience" name="experience" required>
+
+            <label>Are you forming your own team?</label>
+            <div class="radio-group">
+                <input type="radio" id="team-yes" name="team" value="yes" required>
+                <label for="team-yes">Yes</label>
+
+                <input type="radio" id="team-no" name="team" value="no" required>
+                <label for="team-no">No</label>
+            </div>
+
+            <!-- Teammate Registration Part -->
+            <div id="teammate-registration" class="hidden">
+                <label for="teammate-count">Number of Teammates (2-4):</label>
+                <select id="teammate-count" name="teammate-count">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+
+                <div id="teammate-fields">
+                    <!-- Dynamic teammate registration fields will be added here based on selection -->
+                </div>
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+
+        <div id="thank-you-message" class="thank-you-message hidden">
+            <h2>Thanks for registering!</h2>
+            <p>Join our Discord server: <a href="https://discord.gg/your-server-link" target="_blank">Hackathon
+                    Discord</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registration-form');
+            const teamYesRadio = document.getElementById('team-yes');
+            const teamNoRadio = document.getElementById('team-no');
+            const teammateRegistration = document.getElementById('teammate-registration');
+            const teammateFields = document.getElementById('teammate-fields');
+            const teammateCountSelect = document.getElementById('teammate-count');
+            const thankYouMessage = document.getElementById('thank-you-message');
+
+            teamYesRadio.addEventListener('change', function () {
+                if (teamYesRadio.checked) {
+                    teammateRegistration.style.display = 'block';
+                }
+            });
+
+            teamNoRadio.addEventListener('change', function () {
+                if (teamNoRadio.checked) {
+                    teammateRegistration.style.display = 'none';
+                    teammateFields.innerHTML = '';
+                }
+            });
+
+            teammateCountSelect.addEventListener('change', function () {
+                const count = parseInt(teammateCountSelect.value);
+
+                teammateFields.innerHTML = '';
+
+                for (let i = 1; i <= count; i++) {
+                    teammateFields.innerHTML += `
+                        <h3>Teammate ${i} Information</h3>
+                        <label for="teammate${i}-firstname">First Name:</label>
+                        <input type="text" id="teammate${i}-firstname" name="teammate${i}-firstname" required>
+
+                        <label for="teammate${i}-fathername">Father's Name:</label>
+                        <input type="text" id="teammate${i}-fathername" name="teammate${i}-fathername" required>
+
+                        <label for="teammate${i}-grandfathername">Grandfather's Name:</label>
+                        <input type="text" id="teammate${i}-grandfathername" name="teammate${i}-grandfathername" required>
+
+                        <label for="teammate${i}-email">Email:</label>
+                        <input type="email" id="teammate${i}-email" name="teammate${i}-email" required>
+
+                        <label for="teammate${i}-phone">Phone Number:</label>
+                        <input type="tel" id="teammate${i}-phone" name="teammate${i}-phone" required>
+
+                        <label for="teammate${i}-discord">Discord Username:</label>
+                        <input type="text" id="teammate${i}-discord" name="teammate${i}-discord" required>
+
+                        <label for="teammate${i}-grade">Grade Level:</label>
+                        <input type="text" id="teammate${i}-grade" name="teammate${i}-grade" required>
+
+                        <label for="teammate${i}-school">School:</label>
+                        <input type="text" id="teammate${i}-school" name="teammate${i}-school" required>
+
+                        <label for="teammate${i}-experience">Programming Experience:</label>
+                        <input type="text" id="teammate${i}-experience" name="teammate${i}-experience" required>
+                    `;
+                }
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                const jsonData = {};
+
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+
+                fetch('registration_processing.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(jsonData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            form.reset();
+                            thankYouMessage.classList.remove('hidden');
+                            setTimeout(() => {
+                                thankYouMessage.classList.add('hidden');
+                            }, 5000);
+                        } else {
+                            alert('Registration failed. Please try again.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+</body>
+
+</html>
