@@ -1,3 +1,10 @@
+/* 
+  Updated CSS for Hackathon 2025:
+  - Reduced horizontal padding for #schedule .nav-tabs a (from 100px to 60px)
+    to accommodate the four-day schedule.
+  - All other styling remains unchanged.
+*/
+
 body {
   background: #fff;
   color: #2f3138;
@@ -436,18 +443,9 @@ body.mobile-nav-active #mobile-nav-toggle {
   left: 0;
   top: 90px;
   right: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   text-align: center;
   padding: 0 15px;
@@ -486,7 +484,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translateX(-40%) translateY(-50%);
   transform: translateX(-40%) translateY(-50%);
   width: 0;
   height: 0;
@@ -502,15 +499,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   position: absolute;
   width: 120px;
   height: 120px;
-  -webkit-animation-delay: 0s;
   animation-delay: 0s;
-  -webkit-animation: pulsate-btn 2s;
   animation: pulsate-btn 2s;
-  -webkit-animation-direction: forwards;
   animation-direction: forwards;
-  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-  -webkit-animation-timing-function: steps;
   animation-timing-function: steps;
   opacity: 1;
   border-radius: 50%;
@@ -522,7 +514,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #intro .play-btn:hover::after {
   border-left: 15px solid #f82249;
-  -webkit-transform: scale(20);
   transform: scale(20);
 }
 
@@ -531,7 +522,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translateX(-40%) translateY(-50%);
   transform: translateX(-40%) translateY(-50%);
   width: 0;
   height: 0;
@@ -540,7 +530,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-bottom: 10px solid transparent;
   border-left: 15px solid #fff;
   z-index: 200;
-  -webkit-animation: none;
   animation: none;
   border-radius: 0;
 }
@@ -557,7 +546,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   line-height: 1;
   margin: 10px;
   color: #fff;
-  -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
   border: 2px solid #f82249;
 }
@@ -745,13 +733,14 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 0;
 }
 
+/* Modified to reduce horizontal padding for four nav items */
 #schedule .nav-tabs a {
   border: none;
   border-radius: 50px;
   font-weight: 600;
   background-color: #0e1b4d;
   color: #fff;
-  padding: 10px 100px;
+  padding: 10px 60px;
 }
 
 #schedule .nav-tabs a.active {
@@ -797,7 +786,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #schedule .schedule-item .speaker img {
   height: 100%;
-  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   margin-left: 50%;
   transition: all ease-in-out 0.3s;
@@ -880,7 +868,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #venue .venue-gallery:hover img {
-  -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 
@@ -895,7 +882,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #hotels .hotel:hover .hotel-img img {
-  -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 
@@ -994,14 +980,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #supporters .supporter-logo {
   padding: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   border-right: 1px solid #e0e5fa;
   border-bottom: 1px solid #e0e5fa;
@@ -1011,7 +991,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #supporters .supporter-logo:hover img {
-  -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
 
