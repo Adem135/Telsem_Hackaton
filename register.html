@@ -4,11 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telsem Hackathon 2024 - Registration Form</title>
+    <title>Telsem Hackathon 2025 - Registration Form</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Under Construction Overlay */
+        .underconstruction {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            z-index: 9999;
+        }
+
+        /* Original styles from your code */
+        .hidden {
+            display: none;
+        }
+
+        .registration-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .registration-container label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .registration-container input,
+        .registration-container select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .thank-you-message {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e6ffe6;
+            border: 1px solid #00cc00;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Under Construction Overlay -->
+    <div class="underconstruction">
+        <h1>Under Construction</h1>
+        <p>We're working hard to bring you this page soon. Please check back later!</p>
+    </div>
+
     <div class="registration-container">
         <h2>Registration Form</h2>
         <form id="registration-form">
@@ -84,6 +145,7 @@
             const teammateCountSelect = document.getElementById('teammate-count');
             const thankYouMessage = document.getElementById('thank-you-message');
 
+            // Toggle teammate registration display based on radio selection
             teamYesRadio.addEventListener('change', function () {
                 if (teamYesRadio.checked) {
                     teammateRegistration.style.display = 'block';
@@ -97,50 +159,48 @@
                 }
             });
 
+            // Dynamically generate teammate fields based on selected number
             teammateCountSelect.addEventListener('change', function () {
                 const count = parseInt(teammateCountSelect.value);
-
                 teammateFields.innerHTML = '';
-
                 for (let i = 1; i <= count; i++) {
                     teammateFields.innerHTML += `
-                        <h3>Teammate ${i} Information</h3>
-                        <label for="teammate${i}-firstname">First Name:</label>
-                        <input type="text" id="teammate${i}-firstname" name="teammate${i}-firstname" required>
-
-                        <label for="teammate${i}-fathername">Father's Name:</label>
-                        <input type="text" id="teammate${i}-fathername" name="teammate${i}-fathername" required>
-
-                        <label for="teammate${i}-grandfathername">Grandfather's Name:</label>
-                        <input type="text" id="teammate${i}-grandfathername" name="teammate${i}-grandfathername" required>
-
-                        <label for="teammate${i}-email">Email:</label>
-                        <input type="email" id="teammate${i}-email" name="teammate${i}-email" required>
-
-                        <label for="teammate${i}-phone">Phone Number:</label>
-                        <input type="tel" id="teammate${i}-phone" name="teammate${i}-phone" required>
-
-                        <label for="teammate${i}-discord">Discord Username:</label>
-                        <input type="text" id="teammate${i}-discord" name="teammate${i}-discord" required>
-
-                        <label for="teammate${i}-grade">Grade Level:</label>
-                        <input type="text" id="teammate${i}-grade" name="teammate${i}-grade" required>
-
-                        <label for="teammate${i}-school">School:</label>
-                        <input type="text" id="teammate${i}-school" name="teammate${i}-school" required>
-
-                        <label for="teammate${i}-experience">Programming Experience:</label>
-                        <input type="text" id="teammate${i}-experience" name="teammate${i}-experience" required>
-                    `;
+            <h3>Teammate ${i} Information</h3>
+            <label for="teammate${i}-firstname">First Name:</label>
+            <input type="text" id="teammate${i}-firstname" name="teammate${i}-firstname" required>
+            
+            <label for="teammate${i}-fathername">Father's Name:</label>
+            <input type="text" id="teammate${i}-fathername" name="teammate${i}-fathername" required>
+            
+            <label for="teammate${i}-grandfathername">Grandfather's Name:</label>
+            <input type="text" id="teammate${i}-grandfathername" name="teammate${i}-grandfathername" required>
+            
+            <label for="teammate${i}-email">Email:</label>
+            <input type="email" id="teammate${i}-email" name="teammate${i}-email" required>
+            
+            <label for="teammate${i}-phone">Phone Number:</label>
+            <input type="tel" id="teammate${i}-phone" name="teammate${i}-phone" required>
+            
+            <label for="teammate${i}-discord">Discord Username:</label>
+            <input type="text" id="teammate${i}-discord" name="teammate${i}-discord" required>
+            
+            <label for="teammate${i}-grade">Grade Level:</label>
+            <input type="text" id="teammate${i}-grade" name="teammate${i}-grade" required>
+            
+            <label for="teammate${i}-school">School:</label>
+            <input type="text" id="teammate${i}-school" name="teammate${i}-school" required>
+            
+            <label for="teammate${i}-experience">Programming Experience:</label>
+            <input type="text" id="teammate${i}-experience" name="teammate${i}-experience" required>
+          `;
                 }
             });
 
+            // Handle form submission via AJAX
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
-
                 const formData = new FormData(form);
                 const jsonData = {};
-
                 formData.forEach((value, key) => {
                     jsonData[key] = value;
                 });
@@ -156,7 +216,12 @@
                     .then(data => {
                         if (data.success) {
                             form.reset();
+                            // Hide teammate registration in case it was shown
+                            teammateRegistration.style.display = 'none';
+                            teammateFields.innerHTML = '';
+                            // Display the thank-you message
                             thankYouMessage.classList.remove('hidden');
+                            // Optionally hide the thank-you message after 5 seconds
                             setTimeout(() => {
                                 thankYouMessage.classList.add('hidden');
                             }, 5000);
